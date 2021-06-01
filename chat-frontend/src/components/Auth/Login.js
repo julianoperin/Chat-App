@@ -1,8 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import loginImage from "../../assets/images/login.svg";
 import "./Auth.scss";
+import { Link } from "react-router-dom";
+import axios from "axios";
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const submitForm = async (e) => {
+    e.preventDefault();
+
+    axios
+      .post("http://localhost:3000/login", { email, password })
+      .then((res) => {
+        console.log("res", res);
+      })
+      .catch((err) => {
+        console.log("err", err);
+      });
+
+    console.log(email, password);
+  };
+
   return (
     <div id="auth-container">
       <div id="auth-card">
@@ -12,16 +32,30 @@ const Login = () => {
           </div>
           <div id="form-section">
             <h2>Welcome back</h2>
-            <form>
+            <form onSubmit={submitForm}>
               <div className="input-field">
-                <input type="text" placeholder="Enter Email" />
+                <input
+                  onChange={(e) => setEmail(e.target.value)}
+                  type="text"
+                  placeholder="Enter Email"
+                  required="required"
+                  value={email}
+                />
               </div>
               <div className="input-field">
-                <input type="text" placeholder="Enter Password" />
+                <input
+                  onChange={(e) => setPassword(e.target.value)}
+                  type="password"
+                  placeholder="Enter Password"
+                  required="required"
+                  value={password}
+                />
               </div>
               <button>Login</button>
             </form>
-            <p>Don't have an account? Register</p>
+            <p>
+              Don't have an account? <Link to="register">Register</Link>
+            </p>
           </div>
         </div>
       </div>
