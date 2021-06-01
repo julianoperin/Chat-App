@@ -45,7 +45,6 @@ exports.register = async (req, res) => {
   } catch (e) {
     return res.status(500).json({ message: e.message });
   }
-  console.log(message);
 };
 
 const generateToken = (user) => {
