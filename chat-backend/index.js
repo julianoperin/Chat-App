@@ -1,21 +1,16 @@
-require("dotenv").config();
 const express = require("express");
-
-//! ENV
 const config = require("./config/app");
-
+const router = require("./router");
 const app = express();
+const bodyParser = express();
 
-const PORT = config.appPort;
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
-app.get("/home", (req, res) => {
-  res.send("Home Screen");
-});
+app.use(router);
 
-app.get("/login", (req, res) => {
-  res.send("Home Screen");
-});
+const port = config.appPort;
 
-app.listen(PORT, () => {
-  console.log(`Server listening to port ${PORT}`);
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
 });
