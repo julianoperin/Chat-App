@@ -5,6 +5,7 @@ const AuthService = {
     return API.post("login", data)
       .then(({ data }) => {
         API.defaults.headers["Authorization"] = `Bearer ${data.token}`;
+        return data;
       })
       .catch((err) => {
         console.log("Auth Service err", err);

@@ -4,15 +4,22 @@ import "./Auth.scss";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import AuthService from "../../services/authService";
+import { useDispatch } from "react-redux";
+import { login } from "../../store/actions/auth";
 
-const Login = () => {
+const Login = ({ history }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const dispatch = useDispatch();
 
   const submitForm = async (e) => {
     e.preventDefault();
 
-    AuthService.login({ email, password }).then((res) => console.log(res));
+    dispatch(login({ email, password }));
+    history.push("/");
+
+    // AuthService.login({ email, password }).then((res) => console.log(res));
 
     // axios
     //   .post("http://localhost:3000/login", { email, password })
