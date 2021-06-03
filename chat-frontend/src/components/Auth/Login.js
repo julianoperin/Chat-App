@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import loginImage from "../../assets/images/login.svg";
 import "./Auth.scss";
 import { Link } from "react-router-dom";
@@ -13,6 +13,11 @@ const Login = ({ history }) => {
   const [password, setPassword] = useState("");
 
   const dispatch = useDispatch();
+  // useEffect(() => {
+  //   if (isLoggedIn) {
+  //     history.push("/");
+  //   }
+  // }, [isLoggedIn]);
 
   const submitForm = async (e) => {
     e.preventDefault();
@@ -32,7 +37,7 @@ const Login = ({ history }) => {
     //   });
 
     // console.log(email, password);
-    console.log(isLoggedIn);
+    // console.log(isLoggedIn);
   };
 
   return (
