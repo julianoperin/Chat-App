@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import loginImage from "../../assets/images/login.svg";
 import "./Auth.scss";
 import { Link } from "react-router-dom";
-import axios from "axios";
-import AuthService from "../../services/authService";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../store/actions/auth";
 
 const Login = ({ history }) => {
+  const authReducer = useSelector((state) => state.authReducer);
+  const { isLoggedIn } = authReducer;
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -30,7 +31,8 @@ const Login = ({ history }) => {
     //     console.log("err", err);
     //   });
 
-    console.log(email, password);
+    // console.log(email, password);
+    console.log(isLoggedIn);
   };
 
   return (

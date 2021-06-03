@@ -9,7 +9,7 @@ const Login = ({ history }) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
-  const [gender, setGender] = useState("male");
+  const [gender, setGender] = useState("");
   const [password, setPassword] = useState("");
 
   const dispatch = useDispatch();
